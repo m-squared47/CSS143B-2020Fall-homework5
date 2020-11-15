@@ -34,8 +34,9 @@ public class Problem3Test {
 
     @Test
     public void testInOrderTraverse() {
-        // homework
+        //homework
         // to verify inOrderTraverse(TreeNode<Integer> node)
+        //test if the size of the output array is the same as the input
     }
 
     private static List<Integer> inOrderTraverse(TreeNode<Integer> node) {
@@ -146,9 +147,20 @@ public class Problem3Test {
         //    N   N
         // homework
         // what problem can you see for insertInBst from this test case?
-        // answer:
+        // answer: Since 1 is a very low value and all the inserted values are in numerical order,
+        //          this tree will just become a right branch linked list making this list very inefficient to
+        //          search through as it gets longer. A balanced tree is very efficient to search through as trees
+        //          can be split in half exponentially, but the problem with binary trees is that they get more
+        //          and more inefficient the more lopsided they get.
         // discuss how you would solve it in a comment below
-        // answer:
+        // answer: Given a sorted array, you can find the middle value and use that as the root and split the array
+        //          in half. Then you continue taking the middle values of those arrays and inserting those values
+        //          into the tree while splitting those arrays in half until they are one element (more recursion).
+        //          This will ensure both sides have the same number of elements (or -1 if odd). This does get more
+        //          inefficient as the number of elements increases, as most things often do. When inserting and element,
+        //          you can do an in order traverse and put all the values into an array. Insert the new element in the
+        //          array in a sorted manner, then put back in the tree again. But this method get even more inefficient
+        //          the more elements you have, but searching through the tree will still be more efficient than before.
         root = new TreeNode<>(1);
         testCases.add(new BSTTestCase<>(root, 2, Arrays.asList(1, 2)));
         testCases.add(new BSTTestCase<>(root, 3, Arrays.asList(1, 2, 3)));
