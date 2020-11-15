@@ -33,5 +33,5 @@ public class LCA {
 
         //else, return root of left
         return left;
-    }
+    } 
 }
