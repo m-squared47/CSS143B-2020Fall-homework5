@@ -37,6 +37,38 @@ public class Problem3Test {
         //homework
         // to verify inOrderTraverse(TreeNode<Integer> node)
         //test if the size of the output array is the same as the input
+        List<TreeNode<Integer>> testTrees = new ArrayList<>();  //list of input testing trees
+        int[][] treesArray = {
+                {5, 4, 5, 7, 6, 2, 3},
+                {2, 1, 5, 4, 6},
+                {10, 5, 9, 8, 12, 15, 13}
+        };
+
+        List<List<Integer>> expectedList = new ArrayList<>();
+        expectedList.add(Arrays.asList(2, 3, 4, 5, 5, 6, 7));       //tree 1 expected
+        expectedList.add(Arrays.asList(1, 2, 4, 5, 6));             //tree 2 expected
+        expectedList.add(Arrays.asList(5, 8, 9, 10, 12, 13, 15));   //tree 3 expected
+
+        for(int i = 0; i < treesArray.length; i++) {            //for every test case
+
+            TreeNode<Integer> tree = null;                      //fill in test tree
+            for(int j = 0; j < treesArray[i].length; j++){
+                if(j == 0){                                     //main root
+                    tree = new TreeNode<>(treesArray[i][0]);
+                }else {
+                    InsertInBST.insert(tree, treesArray[i][j]); //insert
+                }
+            }
+
+            List<Integer> actual = inOrderTraverse(tree);       //test tree to list
+            List<Integer> expected = expectedList.get(i);       //get expected list
+
+            for (int g = 0; g < expected.size(); g++) {         //test if elements are the same
+                assertEquals("Tree: " + i + " Case: " + g,expected.get(g), actual.get(g));
+            }
+
+            assertEquals(expected.size(), actual.size());       //check if both arrays are the same size
+        }
     }
 
     private static List<Integer> inOrderTraverse(TreeNode<Integer> node) {
